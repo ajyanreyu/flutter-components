@@ -10,7 +10,9 @@ class _InputPageState extends State<InputPage> {
   String _email = '';
   String _password = '';
   String _date = '';
+  String _selectedOption = 'fly';
   TextEditingController _inputFieldDateController = new TextEditingController();
+  List<String> _powers = ['fly', 'x-rays', 'super strength'];
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,8 @@ class _InputPageState extends State<InputPage> {
           _createdPassword(),
           Divider(),
           _createdDate(context),
+          Divider(),
+          _createdDropDown(),
           Divider(),
           _createPerson(),
           Divider(),
@@ -61,13 +65,6 @@ class _InputPageState extends State<InputPage> {
           suffixIcon: Icon(Icons.lock),
           icon: Icon(Icons.lock)),
       onChanged: (value) => setState(() => _email = value),
-    );
-  }
-
-  Widget _createPerson() {
-    return ListTile(
-      title: Text('Name: $_name'),
-      subtitle: Text('Email: $_email'),
     );
   }
 
@@ -117,5 +114,42 @@ class _InputPageState extends State<InputPage> {
       _date = picked.toString();
       _inputFieldDateController.text = _date;
     }
+  }
+
+  List<DropdownMenuItem<String>> getDropDownOptions() {
+    List<DropdownMenuItem<String>> list = new List();
+    _powers.forEach((power) {
+      list.add(DropdownMenuItem(
+        child: Text(power),
+        value: power,
+      ));
+    });
+    return list;
+  }
+
+  Widget _createdDropDown() {
+    return Row(
+      children: <Widget>[
+        Icon(Icons.select_all),
+        SizedBox(width: 30.0),
+        Expanded(
+          child: DropdownButton(
+            value: _selectedOption,
+            items: getDropDownOptions(),
+            onChanged: (option) => setState(() {
+              _selectedOption = option;
+            }),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _createPerson() {
+    return ListTile(
+      title: Text('Name: $_name'),
+      subtitle: Text('Email: $_email'),
+      leading: Text('Power: $_selectedOption'),
+    );
   }
 }
