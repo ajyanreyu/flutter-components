@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-import 'package:flutter_components/pages/providers/menu_provider.dart';
+import 'package:flutter_components/providers/menu_provider.dart';
 import 'package:flutter_components/utils/icon_string_util.dart';
 
 import 'alert_page.dart';
