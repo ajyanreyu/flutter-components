@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-
 import 'package:flutter_components/providers/menu_provider.dart';
 import 'package:flutter_components/utils/icon_string_util.dart';
-
-import 'alert_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -38,7 +35,7 @@ class HomePage extends StatelessWidget {
         leading: getIcon(opt['icon']),
         trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue),
         onTap: () {
-            Navigator.pushNamed(context, opt['route']);
+          Navigator.pushNamed(context, opt['route']);
         },
       );
       options..add(widgetTemp)..add(Divider());
